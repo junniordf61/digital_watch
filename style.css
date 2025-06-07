@@ -1,0 +1,71 @@
+body {
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'sans-serif', arial;
+}
+
+.clock {
+    background-color: #1f1f1f;
+    padding: 40px 80px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#hour {
+    font-size: 64px;
+    color: #00ffcc;
+}
+
+#date {
+    font-size: 20px;
+    color: #cccccc;
+    margin-top: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+
+body.light {
+  background-color: #f4f4f4;
+  color: #222222;
+}
+
+#toggle-theme {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #00ffcc;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: arial;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+#toggle-theme:hover {
+    background-color: #00ddaa;
+}
+
+
+
+@keyframes pulseAnimation {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.1);}
+    100% { transform: scale(1);}
+}
+
+.pulse {
+    animation: pulseAnimation 0.3s ease;
+}
