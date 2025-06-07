@@ -7,12 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="clock">
-        <h1 id="hour">--:--:--</h1>
-        <p id="date">loading date...</p>
+    <div class="container">
+  <div class="clock">
+    <h1 id="hour">--:--:--</h1>
+    <p id="date">loading date...</p>
+
+    <div id="timer" style="display: none;">
+      <h1 id="time">00:00:00</h1>
+      <div class="botoes">
+  <button onclick="start()" class="botao-global">▶️ Start</button>
+  <button onclick="pause()" class="botao-global">⏸️ Pause</button>
+  <button onclick="reset()" class="botao-global">🔄 Reset</button>
+</div>
+
     </div>
-    <button id="toggle-theme">change theme</button>
-    
+  </div>
+
+  <!-- Agora faz parte do container central -->
+  <button id="change-mode">⏱️ Use Stopwatch</button>
+</div>
+    <button id="toggle-theme">Change theme</button>
+
     <script src="script.js"></script>
 </body>
 </html>

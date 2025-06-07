@@ -55,3 +55,64 @@ botaoTema.addEventListener('click', () => {
 
 // garante que o texto inicial seja correto
 atualizarTextoBotao();
+
+
+let seconds = 0;
+let ativeTimer = false;
+let intervalTimer = null;
+
+function formatTime(segundos) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${String(h).padStart(2, '0')}: ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+}
+
+function uptadeTimer() {
+    document.getElementById('time').textContent = formatTime(seconds);
+}
+
+function start() {
+    if (!ativeTimer) {
+        ativeTimer = true;
+        intervalTimer = setInterval(() => {
+            seconds++;
+            uptadeTimer();
+        }, 1000);
+    }
+}
+
+function pause() {
+    ativeTimer = false;
+    clearInterval(intervalTimer)
+}
+
+function reset() {
+    pause();
+    seconds = 0;
+    uptadeTimer();
+}
+
+
+const buttonMode = document.getElementById('change-mode');
+
+buttonMode.addEventListener('click', () => {
+  const relogio = document.getElementById('hour');
+  const data = document.getElementById('date');
+  const cronometro = document.getElementById('timer');
+
+  if (cronometro.style.display === 'none') {
+    // Mostrar cronômetro, esconder relógio
+    relogio.style.display = 'none';
+    data.style.display = 'none';
+    cronometro.style.display = 'block';
+    buttonMode.textContent = '🕒 Use Watch';
+  } else {
+    // Mostrar relógio, esconder cronômetro
+    relogio.style.display = 'block';
+    data.style.display = 'block';
+    cronometro.style.display = 'none';
+    buttonMode.textContent = '⏱️ Use Stopwatch';
+  }
+});
+
