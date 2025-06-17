@@ -364,4 +364,21 @@ async function loadCurrencyRates() {
     el.innerHTML = "<span style='color: red;'>Erro ao carregar as cotações.</span>";
     console.error("Erro ao carregar cotações:", err);
   }
+
 }
+
+// Fecha a sidebar se clicar fora dela (em telas pequenas)
+document.addEventListener("click", function (event) {
+  const sidebar = document.getElementById("sidebar");
+  const toggle = document.querySelector(".menu-toggle");
+
+  const isMobile = window.innerWidth <= 768;
+  const isSidebarOpen = sidebar.classList.contains("open");
+  const clickedInsideSidebar = sidebar.contains(event.target);
+  const clickedToggle = toggle.contains(event.target);
+
+  if (isMobile && isSidebarOpen && !clickedInsideSidebar && !clickedToggle) {
+    sidebar.classList.remove("open");
+  }
+});
+
