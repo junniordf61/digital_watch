@@ -1,0 +1,239 @@
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relógio Digital Completo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+
+
+    <div class="sidebar" id="sidebar">
+      <button class="tab-button active" data-tab="clock">🕒 Relógio</button>
+      <button class="tab-button" data-tab="stopwatch">⏱ Cronômetro</button>
+      <button class="tab-button" data-tab="timer">⏲ Temporizador</button>
+      <button class="tab-button" data-tab="converter">🌐 Conversor de Horários</button>
+      <button class="tab-button" data-tab="currency-converter">💱 Conversor de Moedas</button>
+      <button class="tab-button" data-tab="weather">🌤️ Clima</button>
+      <button class="tab-button" data-tab="rates">💹 Cotações</button>
+      <button class="tab-button" data-tab="stocks">📈 Bolsas</button>
+      <button class="tab-button" data-tab="maps">🌍 Mapas</button>
+      <button class="tab-button" data-tab="holidays">📅 Feriados</button>
+      <button class="tab-button" data-tab="calendar">🗓️ Calendário</button>
+      <button class="tab-button" data-tab="settings">⚙️ Configurações</button>
+    </div>
+
+    <div class="main-content">
+      <!-- RELÓGIO -->
+      <div id="tab-clock" class="tab-content active">
+        <div class="clock">
+          <h1 id="hour" class="hover-glow">--:--:--</h1>
+          <p id="date" class="hover-glow">Carregando data...</p>
+
+          <div class="world-clocks">
+            <div class="world-clock" data-zone="America/Sao_Paulo">
+              <h3>🇧🇷 São Paulo</h3>
+              <p class="world-time">--</p>
+            </div>
+            <div class="world-clock" data-zone="America/New_York">
+              <h3>🇺🇸 Nova York</h3>
+              <p class="world-time">--</p>
+            </div>
+            <div class="world-clock" data-zone="Europe/London">
+              <h3>🇬🇧 Londres</h3>
+              <p class="world-time">--</p>
+            </div>
+            <div class="world-clock" data-zone="Europe/Paris">
+              <h3>🇫🇷 Paris</h3>
+              <p class="world-time">--</p>
+            </div>
+            <div class="world-clock" data-zone="Asia/Tokyo">
+              <h3>🇯🇵 Tóquio</h3>
+              <p class="world-time">--</p>
+            </div>
+            <div class="world-clock" data-zone="Australia/Sydney">
+              <h3>🇦🇺 Sydney</h3>
+              <p class="world-time">--</p>
+            </div>
+            <div class="world-clock" data-zone="America/Toronto">
+              <h3>🇨🇦 Toronto</h3>
+              <p class="world-time">--</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRONÔMETRO -->
+      <div id="tab-stopwatch" class="tab-content">
+        <div class="clock">
+          <h2>Cronômetro</h2>
+          <h1 id="time">00:00:00.00</h1>
+          <div class="botoes">
+            <button onclick="start()" class="botao-global">Iniciar</button>
+            <button onclick="pause()" class="botao-global">Pausar</button>
+            <button onclick="reset()" class="botao-global">Resetar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEMPORIZADOR -->
+      <div id="tab-timer" class="tab-content">
+        <div class="clock">
+          <h2>Temporizador</h2>
+          <div class="timer-inputs">
+            <input type="number" id="timer-minutes" placeholder="Min" min="0" class="timer-input" />
+            <span>:</span>
+            <input type="number" id="timer-seconds" placeholder="Seg" min="0" max="59" class="timer-input" />
+          </div>
+          <h1 id="timer-display">00:00</h1>
+          <div class="botoes">
+            <button onclick="startTimer()" class="botao-global">Iniciar</button>
+            <button onclick="pauseTimer()" class="botao-global">Pausar</button>
+            <button onclick="resetTimer()" class="botao-global">Resetar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONVERSOR DE HORÁRIOS -->
+      <div id="tab-converter" class="tab-content">
+        <div class="converter-box">
+          <h2>🌐 Conversor de Horários</h2>
+          <select id="fromTimezone" class="botao-global">
+            <option value="America/Sao_Paulo">Brasil</option>
+            <option value="America/New_York">Nova York</option>
+            <option value="Europe/London">Londres</option>
+            <option value="Asia/Tokyo">Tóquio</option>
+            <option value="Australia/Sydney">Sydney</option>
+            <option value="Europe/Paris">Paris</option>
+            <option value="Asia/Dubai">Dubai</option>
+          </select>
+          <span style="margin: 0 10px;">→</span>
+          <select id="toTimezone" class="botao-global">
+            <option value="Europe/London">Londres</option>
+            <option value="America/New_York">Nova York</option>
+            <option value="Asia/Tokyo">Tóquio</option>
+            <option value="Australia/Sydney">Sydney</option>
+            <option value="Europe/Paris">Paris</option>
+            <option value="Asia/Dubai">Dubai</option>
+            <option value="America/Sao_Paulo">Brasil</option>
+          </select>
+          <div style="margin-top: 10px;">
+            <p id="convertedTime" class="hover-glow">--</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONVERSOR DE MOEDAS -->
+      <div id="tab-currency-converter" class="tab-content">
+        <div class="converter-box">
+          <h2>💱 Conversor de Moedas</h2>
+          <select id="fromCurrency" class="botao-global">
+            <option value="USD">Dólar (USD)</option>
+            <option value="BRL">Real (BRL)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <option value="GBP">Libra (GBP)</option>
+            <option value="JPY">Iene (JPY)</option>
+            <option value="AUD">Dólar Australiano (AUD)</option>
+            <option value="CAD">Dólar Canadense (CAD)</option>
+          </select>
+          <span>→</span>
+          <select id="toCurrency" class="botao-global">
+            <option value="BRL">Real (BRL)</option>
+            <option value="USD">Dólar (USD)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <option value="GBP">Libra (GBP)</option>
+            <option value="JPY">Iene (JPY)</option>
+            <option value="AUD">Dólar Australiano (AUD)</option>
+            <option value="CAD">Dólar Canadense (CAD)</option>
+          </select>
+          <div style="margin-top: 15px;">
+            <input type="number" id="currencyAmount" name="currencyAmount" class="timer-input" placeholder="Quantia" value="1" />
+          <p id="currencyResult" class="hover-glow" style="margin-top: 10px;">--</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIMA -->
+      <div id="tab-weather" class="tab-content">
+        <div class="weather-box">
+          <h2>🌤️ Tempo Agora</h2>
+          <p id="weather">Carregando previsão...</p>
+        </div>
+      </div>
+
+      <!-- COTAÇÕES -->
+      <!-- ABA DE COTAÇÕES -->
+      <div id="tab-rates" class="tab-content">
+        <div class="converter-box">
+          <h2>💹 Cotações</h2>
+          <div id="rates-info">Carregando...</div>
+        </div>
+      </div>
+
+
+
+      <!-- BOLSAS -->
+      <div id="tab-stocks" class="tab-content">
+        <div class="converter-box">
+          <h2>📈 Cotações de Bolsas de Valores</h2>
+          <div id="stock-quotes">Carregando...</div>
+        </div>
+      </div>
+
+      <!-- MAPAS -->
+      <div id="tab-maps" class="tab-content">
+        <div class="clock">
+          <h2>🌍 Mapas</h2>
+          <iframe src="https://www.google.com/maps/embed?pb=" width="100%" height="400" style="border:0;"
+            allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- FERIADOS -->
+      <div id="tab-holidays" class="tab-content">
+        <div class="clock">
+          <h2>📅 Feriados (Brasil)</h2>
+          <ul>
+            <li>01 Jan - Confraternização Universal</li>
+            <li>07 Set - Independência do Brasil</li>
+            <li>12 Out - Nossa Senhora Aparecida</li>
+            <li>02 Nov - Finados</li>
+            <li>25 Dez - Natal</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CALENDÁRIO -->
+      <div id="tab-calendar" class="tab-content">
+        <div class="clock">
+          <h2>🗓️ Calendário</h2>
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=pt.brazilian%23holiday%40group.v.calendar.google.com"
+            style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+
+      <!-- CONFIGURAÇÕES -->
+      <div id="tab-settings" class="tab-content">
+        <h2>⚙️ Configurações</h2>
+        <label for="language-select">Idioma:</label>
+        <select id="language-select" class="botao-global">
+          <option value="pt-BR">Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+        </select>
+        <div style="margin-top: 20px;">
+          <button id="toggle-theme" class="botao-global">Mudar Tema</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+
+  </html>
